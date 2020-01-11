@@ -1,35 +1,38 @@
 #pragma once
 #include <cstdint>
 #include <string>
-#include "WindowHandler.h"
-#include "EntityAdmin.h"
 #include <memory>
+#include "EntityAdmin.h"
+#include "WindowHandler.h"
 
-namespace eng {
-	class Engine
-	{
-	public:
-		Engine(unsigned int windowWidth, unsigned int windowHeight, std::string windowName);
-		int run();
+class Engine
+{
+public:
+	Engine(int windowWidth, int windowHeight, std::string windowName);
+	void Run();
+	void Initialize();
 
-	private:
+private:
 
-		std::shared_ptr<WindowHandler> wh;
-		std::shared_ptr<EntityAdmin> ea;
+	const int WINDOW_WIDTH;
+	const int WINDOW_HEIGHT;
+	const std::string WINDOW_NAME;
 
-		int64_t getTickCount();
-		int64_t getTime();
+	std::shared_ptr<WindowHandler> wh;
+	std::shared_ptr<EntityAdmin> ea;
 
-		void update();
+	int64_t getTickCount();
+	int64_t getTime();
 
-		void render(float interp);
+	void update();
 
-		int64_t startingTime;
+	void render(float interp);
 
-		bool quit = false;
+	int64_t startingTime;
 
-		const int TICKS_PER_SECOND = 100;
-		const int SKIP_TICKS = 1000 / TICKS_PER_SECOND;
-		const int MAX_FRAMESKIP = 20;
-	};
-}
+	bool quit = false;
+
+	const int TICKS_PER_SECOND = 100;
+	const int SKIP_TICKS = 1000 / TICKS_PER_SECOND;
+	const int MAX_FRAMESKIP = 20;
+};

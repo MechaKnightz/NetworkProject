@@ -170,10 +170,10 @@
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="InputTuple.h" />
-    <ClInclude Include="main.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ShaderComponent.h" />
+    <ClInclude Include="ShaderTuple.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="WindowComponent.h" />
     <ClInclude Include="WindowHandler.h" />

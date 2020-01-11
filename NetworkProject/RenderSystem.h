@@ -6,5 +6,8 @@ class RenderSystem : public System
 public:
 	RenderSystem(EntityAdmin* admin);
 	void Update(float timestep);
+	void Draw(float interp);
+
+	~RenderSystem();
 };
 

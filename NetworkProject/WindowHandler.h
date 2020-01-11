@@ -5,12 +5,9 @@ class GLFWwindow;
 class WindowHandler
 {
 public:
-	WindowHandler(unsigned int windowWidth, unsigned int windowHeight, std::string windowName);
+	WindowHandler(GLFWwindow* window);
 
 	static void frambufferSizeCallback(GLFWwindow* window, int width, int height);
-
-	const int WINDOW_WIDTH;
-	const int WINDOW_HEIGHT;
 
 	GLFWwindow* getWindow()
 	{

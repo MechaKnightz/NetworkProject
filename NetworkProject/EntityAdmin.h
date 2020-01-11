@@ -7,6 +7,7 @@
 #include <memory>
 #include "InputTuple.h"
 #include "WindowTuple.h"
+#include "ShaderTuple.h"
 #include "System.h"
 class GLFWwindow;
 
@@ -14,11 +15,13 @@ class EntityAdmin : public std::enable_shared_from_this<EntityAdmin>
 {
 public:
 	void createEntity(std::string resource = NULL);
-	void update(float timestep);
+	void Update(float timestep);
+	void Draw(float interp);
 	template<class T> T getTuple();
 
 	std::shared_ptr<InputTuple> GetInputTuple();
 	std::shared_ptr<WindowTuple> GetWindowTuple();
+	std::shared_ptr<ShaderTuple> GetShaderTuple();
 
 	EntityAdmin(GLFWwindow* window);
 

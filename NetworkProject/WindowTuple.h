@@ -3,7 +3,8 @@
 class WindowComponent;
 
 struct WindowTuple {
-	WindowTuple(std::shared_ptr<WindowComponent> windowComponent) : windowComponent(windowComponent) {
+	WindowTuple(std::shared_ptr<WindowComponent> windowComponent) : windowComponent(windowComponent) 
+	{
 
 	}
 	std::shared_ptr<WindowComponent> windowComponent;

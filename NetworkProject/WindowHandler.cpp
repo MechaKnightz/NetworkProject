@@ -1,10 +1,10 @@
 #include "WindowHandler.h"
 #include <GLFW/glfw3.h>
+#include <iostream>
+#include "Engine.h"
 
-WindowHandler::WindowHandler(unsigned int windowWidth, unsigned int windowHeight, std::string windowName) : WINDOW_WIDTH(windowWidth), WINDOW_HEIGHT(windowHeight)
+WindowHandler::WindowHandler(GLFWwindow* window) : window(window)
 {
-	this->window = glfwCreateWindow(windowWidth, windowHeight, windowName.c_str(), NULL, NULL);
-	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, frambufferSizeCallback);
 }
 

@@ -1,6 +1,8 @@
 #include "EntityAdmin.h"
 #include "InputSystem.h"
 #include "WindowSystem.h"
+#include "RenderSystem.h"
+#include "ShaderComponent.h"
 
 using namespace std;
 
@@ -32,6 +34,18 @@ std::shared_ptr<WindowTuple> EntityAdmin::GetWindowTuple()
 	return make_shared<WindowTuple>(windowComponent);
 }
 
+std::shared_ptr<ShaderTuple> EntityAdmin::GetShaderTuple()
+{
+	shared_ptr<ShaderComponent> shaderComponent;
+	for (const auto& component : singleComponents)
+	{
+		if (auto window = dynamic_pointer_cast<ShaderComponent>(component)) {
+			shaderComponent = window;
+		}
+	}
+	return make_shared<ShaderTuple>(shaderComponent);
+}
+
 EntityAdmin::EntityAdmin(GLFWwindow* window) : rd(), eng(rd()), distr(numeric_limits<uint32_t>::min(), numeric_limits<uint32_t>::max()), window(window)
 {
 	initSingleComponents();
@@ -46,22 +60,33 @@ void EntityAdmin::createEntity(string resource)
 
 void EntityAdmin::initSystems()
 {
-	systems.push_back(dynamic_pointer_cast<System>(std::make_shared<WindowSystem>(this)));
+	//systems.push_back(dynamic_pointer_cast<System>(std::make_shared<WindowSystem>(this)));
 	systems.push_back(dynamic_pointer_cast<System>(std::make_shared<InputSystem>(this)));
+	systems.push_back(dynamic_pointer_cast<System>(std::make_shared<RenderSystem>(this)));
 }
 
 void EntityAdmin::initSingleComponents()
 {
 	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<InputComponent>()));
-	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<WindowComponent>()));
+	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<WindowComponent>(this->window)));
+	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<ShaderComponent>()));
+
 }
 
-void EntityAdmin::update(float timestep)
+void EntityAdmin::Update(float timestep)
 {
 	//cout << getRandomUInt32() << endl;
 	for(const auto& system : systems)
 	{
 		system->Update(timestep);
+	}
+}
+
+void EntityAdmin::Draw(float interp)
+{
+	for (const auto& system : systems)
+	{
+		system->Draw(interp);
 	}
 }
 

@@ -1,4 +1,5 @@
 #include "WindowSystem.h"
+#include "EntityAdmin.h"
 
 WindowSystem::WindowSystem(EntityAdmin* admin) : System(admin)
 {
