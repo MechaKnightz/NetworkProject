@@ -36,8 +36,8 @@ void Engine::Initialize()
 
 void Engine::Run() 
 {
-	startingTime = getTime();
-	double nextGameTick = (double)getTickCount();
+	int64_t startingTime = getTime();
+	double nextGameTick = (double)getTickCount(startingTime);
 	int loops;
 	int renders;
 	float interp;
@@ -46,7 +46,7 @@ void Engine::Run()
 	{
 
 		loops = 0;
-		int64_t tempvar = getTickCount();
+		int64_t tempvar = getTickCount(startingTime);
 		while (tempvar > nextGameTick&& loops < MAX_FRAMESKIP)
 		{
 			update();
@@ -55,7 +55,7 @@ void Engine::Run()
 			loops++;
 		}
 
-		interp = float(getTickCount() + SKIP_TICKS - nextGameTick)
+		interp = float(getTickCount(startingTime) + SKIP_TICKS - nextGameTick)
 			/ float(SKIP_TICKS);
 
 		render(interp);
@@ -67,7 +67,7 @@ void Engine::Run()
 	return;
 }
 
-int64_t Engine::getTickCount()
+int64_t Engine::getTickCount(int64_t startingTime)
 {
 	return getTime() - startingTime;
 }

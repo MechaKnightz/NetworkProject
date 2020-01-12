@@ -21,14 +21,12 @@ private:
 	std::shared_ptr<WindowHandler> wh;
 	std::shared_ptr<EntityAdmin> ea;
 
-	int64_t getTickCount();
+	int64_t getTickCount(int64_t startingTime);
 	int64_t getTime();
 
 	void update();
 
 	void render(float interp);
-
-	int64_t startingTime;
 
 	bool quit = false;
 

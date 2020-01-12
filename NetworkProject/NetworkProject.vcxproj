@@ -71,15 +71,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)$(Configuration)\Int\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)$(Configuration)\Int\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)$(Configuration)\Int\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)$(Configuration)\Int\$(Platform)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -87,12 +95,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.WIN64\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.WIN64\lib-vc2019;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0\stage\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\lib-vc2019;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0\stage\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -102,12 +110,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.WIN64\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.WIN64\lib-vc2019;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0\stage\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\lib-vc2019;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0\stage\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -119,14 +127,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.WIN64\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.WIN64\lib-vc2019;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0\stage\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\lib-vc2019;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0\stage\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -138,14 +146,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.WIN64\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.WIN64\lib-vc2019;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0\stage\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\lib-vc2019;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0\stage\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -158,6 +166,7 @@
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="System.cpp" />
     <ClCompile Include="WindowHandler.cpp" />
     <ClCompile Include="WindowSystem.cpp" />
@@ -172,6 +181,7 @@
     <ClInclude Include="InputTuple.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderComponent.h" />
     <ClInclude Include="ShaderTuple.h" />
     <ClInclude Include="System.h" />
@@ -179,6 +189,10 @@
     <ClInclude Include="WindowHandler.h" />
     <ClInclude Include="WindowSystem.h" />
     <ClInclude Include="WindowTuple.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\shader.frag" />
+    <None Include="shaders\shader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

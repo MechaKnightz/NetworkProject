@@ -69,7 +69,7 @@ void EntityAdmin::initSingleComponents()
 {
 	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<InputComponent>()));
 	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<WindowComponent>(this->window)));
-	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<ShaderComponent>()));
+	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<ShaderComponent>("shaders/shader.vert", "shaders/shader.frag")));
 
 }
 
