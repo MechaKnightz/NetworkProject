@@ -24,7 +24,7 @@ private:
 	int64_t getTickCount(int64_t startingTime);
 	int64_t getTime();
 
-	void update();
+	void update(float timestep);
 
 	void render(float interp);
 

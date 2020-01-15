@@ -95,7 +95,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\include;$(ProjectDir)\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -103,6 +103,23 @@
       <AdditionalLibraryDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\lib-vc2019;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0\stage\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <CustomBuild>
+      <Command>copy %(Identity) $(OutDir)%(Identity)</Command>
+    </CustomBuild>
+    <CustomBuild>
+      <Message>Copying %(Identity)...</Message>
+    </CustomBuild>
+    <CustomBuild>
+      <Outputs>$(OutDir)%(Identity)</Outputs>
+    </CustomBuild>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -110,7 +127,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\include;$(ProjectDir)\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,6 +135,23 @@
       <AdditionalLibraryDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\lib-vc2019;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0\stage\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <CustomBuild>
+      <Command>copy %(Identity) $(OutDir)%(Identity)</Command>
+    </CustomBuild>
+    <CustomBuild>
+      <Message>Copying %(Identity)...</Message>
+    </CustomBuild>
+    <CustomBuild>
+      <Outputs>$(OutDir)%(Identity)</Outputs>
+    </CustomBuild>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -127,7 +161,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\include;$(ProjectDir)\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,6 +171,27 @@
       <AdditionalLibraryDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\lib-vc2019;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0\stage\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Message>
+      </Message>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <CustomBuild>
+      <Command>copy %(Identity) $(OutDir)%(Identity)</Command>
+    </CustomBuild>
+    <CustomBuild>
+      <Message>Copying %(Identity)...</Message>
+    </CustomBuild>
+    <CustomBuild>
+      <Outputs>$(OutDir)%(Identity)</Outputs>
+    </CustomBuild>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -146,7 +201,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\include;$(ProjectDir)\include;C:\Users\C_Chr\source\libs\CPP\glad\include;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,6 +211,27 @@
       <AdditionalLibraryDirectories>C:\Users\C_Chr\source\libs\CPP\glfw-3.3.1.bin.$(PlatformShortName)\lib-vc2019;C:\Users\C_Chr\source\libs\CPP\boost_1_72_0\stage\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Message>
+      </Message>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <CustomBuild>
+      <Command>copy %(Identity) $(OutDir)%(Identity)</Command>
+    </CustomBuild>
+    <CustomBuild>
+      <Message>Copying %(Identity)...</Message>
+    </CustomBuild>
+    <CustomBuild>
+      <Outputs>$(OutDir)%(Identity)</Outputs>
+    </CustomBuild>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Component.cpp" />
@@ -172,27 +248,45 @@
     <ClCompile Include="WindowSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityAdmin.h" />
+    <ClInclude Include="include\stb_image.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="InputTuple.h" />
+    <ClInclude Include="ModelComponent.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderComponent.h" />
-    <ClInclude Include="ShaderTuple.h" />
+    <ClInclude Include="RenderTuple.h" />
     <ClInclude Include="System.h" />
+    <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="WindowComponent.h" />
     <ClInclude Include="WindowHandler.h" />
     <ClInclude Include="WindowSystem.h" />
     <ClInclude Include="WindowTuple.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\shader.frag" />
-    <None Include="shaders\shader.vert" />
+    <CustomBuild Include="shaders\shader.frag">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+      <FileType>Document</FileType>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </CustomBuild>
+    <CustomBuild Include="shaders\shader.vert">
+      <FileType>Document</FileType>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="resources\container.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="resources\bananas.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

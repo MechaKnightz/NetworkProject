@@ -42,6 +42,8 @@ void Engine::Run()
 	int renders;
 	float interp;
 
+	float lastFrame = glfwGetTime();
+
 	while (!wh->isWindowClosing())
 	{
 
@@ -49,7 +51,10 @@ void Engine::Run()
 		int64_t tempvar = getTickCount(startingTime);
 		while (tempvar > nextGameTick&& loops < MAX_FRAMESKIP)
 		{
-			update();
+			float currentFrame = glfwGetTime();
+			float deltaTime = currentFrame - lastFrame;
+			lastFrame = currentFrame;
+			update(deltaTime);
 
 			nextGameTick += SKIP_TICKS;
 			loops++;
@@ -77,9 +82,9 @@ int64_t Engine::getTime()
 	return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 }
 
-void Engine::update()
+void Engine::update(float timestep)
 {
-	ea->Update(0.0f); //todo
+	ea->Update(timestep);
 }
 
 void Engine::render(float interp)

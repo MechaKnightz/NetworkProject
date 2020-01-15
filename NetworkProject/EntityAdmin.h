@@ -7,7 +7,7 @@
 #include <memory>
 #include "InputTuple.h"
 #include "WindowTuple.h"
-#include "ShaderTuple.h"
+#include "RenderTuple.h"
 #include "System.h"
 class GLFWwindow;
 
@@ -21,7 +21,7 @@ public:
 
 	std::shared_ptr<InputTuple> GetInputTuple();
 	std::shared_ptr<WindowTuple> GetWindowTuple();
-	std::shared_ptr<ShaderTuple> GetShaderTuple();
+	std::shared_ptr<RenderTuple> GetShaderTuple();
 
 	EntityAdmin(GLFWwindow* window);
 

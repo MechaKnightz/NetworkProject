@@ -10,6 +10,8 @@ shared_ptr<InputTuple> EntityAdmin::GetInputTuple()
 {
 	shared_ptr<WindowComponent> windowComponent;
 	shared_ptr<InputComponent> inputComponent;
+	shared_ptr<ShaderComponent> shaderComponent;
+	shared_ptr<CameraComponent> cameraComponent;
 	for (const auto& component : singleComponents)
 	{
 		if (auto input = dynamic_pointer_cast<InputComponent>(component)) {
@@ -18,8 +20,14 @@ shared_ptr<InputTuple> EntityAdmin::GetInputTuple()
 		if (auto window = dynamic_pointer_cast<WindowComponent>(component)) {
 			windowComponent = window;
 		}
+		if (auto shader = dynamic_pointer_cast<ShaderComponent>(component)) {
+			shaderComponent = shader;
+		}
+		if (auto camera = dynamic_pointer_cast<CameraComponent>(component)) {
+			cameraComponent = camera;
+		}
 	}
-	return make_shared<InputTuple>(inputComponent, windowComponent);
+	return make_shared<InputTuple>(inputComponent, windowComponent, shaderComponent, cameraComponent);
 }
 
 std::shared_ptr<WindowTuple> EntityAdmin::GetWindowTuple()
@@ -34,16 +42,20 @@ std::shared_ptr<WindowTuple> EntityAdmin::GetWindowTuple()
 	return make_shared<WindowTuple>(windowComponent);
 }
 
-std::shared_ptr<ShaderTuple> EntityAdmin::GetShaderTuple()
+std::shared_ptr<RenderTuple> EntityAdmin::GetShaderTuple()
 {
 	shared_ptr<ShaderComponent> shaderComponent;
+	shared_ptr<CameraComponent> cameraComponent;
 	for (const auto& component : singleComponents)
 	{
 		if (auto window = dynamic_pointer_cast<ShaderComponent>(component)) {
 			shaderComponent = window;
 		}
+		if (auto camera = dynamic_pointer_cast<CameraComponent>(component)) {
+			cameraComponent = camera;
+		}
 	}
-	return make_shared<ShaderTuple>(shaderComponent);
+	return make_shared<RenderTuple>(shaderComponent, cameraComponent);
 }
 
 EntityAdmin::EntityAdmin(GLFWwindow* window) : rd(), eng(rd()), distr(numeric_limits<uint32_t>::min(), numeric_limits<uint32_t>::max()), window(window)
@@ -70,7 +82,7 @@ void EntityAdmin::initSingleComponents()
 	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<InputComponent>()));
 	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<WindowComponent>(this->window)));
 	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<ShaderComponent>("shaders/shader.vert", "shaders/shader.frag")));
-
+	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<CameraComponent>()));
 }
 
 void EntityAdmin::Update(float timestep)

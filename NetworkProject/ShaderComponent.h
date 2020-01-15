@@ -12,11 +12,23 @@ public:
 	uint32_t VBO;
 	uint32_t EBO;
 
+    uint32_t Texture;
+    uint32_t Texture2;
+
+    uint32_t ProjectionMatrixLocation;
+    uint32_t ViewMatrixLocation;
+    uint32_t ModelMatrixLocation;
+
+    float mixValue = 0.2;
+
 	uint32_t ID;
 
 public:
     ShaderComponent(const std::string vertexPath, const std::string fragmentPath)
 	{
+        int success;
+        char infoLog[512];
+
         // 1. retrieve the vertex/fragment source code from filePath
         std::string vertexCode;
         std::string fragmentCode;
@@ -67,5 +79,24 @@ public:
         // delete the shaders as they're linked into our program now and no longer necessery
         glDeleteShader(vertex);
         glDeleteShader(fragment);
+
+        glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
+        if (!success)
+        {
+            glGetShaderInfoLog(vertex, 512, NULL, infoLog);
+            std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+        };
+        glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
+        if (!success)
+        {
+            glGetShaderInfoLog(fragment, 512, NULL, infoLog);
+            std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+        };
+        glGetProgramiv(ID, GL_LINK_STATUS, &success);
+        if (!success)
+        {
+            glGetProgramInfoLog(ID, 512, NULL, infoLog);
+            std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+        }
 	}
 };

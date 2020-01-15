@@ -109,15 +109,29 @@
     <ClInclude Include="InputTuple.h">
       <Filter>Header Files\Tuples</Filter>
     </ClInclude>
-    <ClInclude Include="ShaderTuple.h">
-      <Filter>Header Files\Tuples</Filter>
-    </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Header Files\SingletonComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTuple.h">
+      <Filter>Header Files\Tuples</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\shader.frag" />
-    <None Include="shaders\shader.vert" />
+    <CustomBuild Include="shaders\shader.frag" />
+    <CustomBuild Include="shaders\shader.vert" />
+    <CustomBuild Include="resources\container.jpg" />
+    <CustomBuild Include="resources\bananas.jpg" />
   </ItemGroup>
 </Project>
