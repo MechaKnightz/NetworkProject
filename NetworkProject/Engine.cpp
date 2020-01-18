@@ -3,10 +3,11 @@
 #include <GLFW/glfw3.h>
 #include <chrono>
 #include <iostream>
+#include "Utility.h"
 
 using namespace std;
 
-Engine::Engine(int windowWidth, int windowHeight, std::string windowName) : WINDOW_WIDTH(windowWidth), WINDOW_HEIGHT(windowHeight), WINDOW_NAME(windowName)
+Engine::Engine()
 {
 }
 
@@ -17,6 +18,9 @@ void Engine::Initialize()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
+	if(!VSYNC) glfwWindowHint(GLFW_DOUBLEBUFFER, GL_FALSE);
+
 
 	GLFWwindow* window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_NAME.c_str(), NULL, NULL);
 	if (window == NULL)
@@ -36,13 +40,16 @@ void Engine::Initialize()
 
 void Engine::Run() 
 {
-	int64_t startingTime = getTime();
+	//init vars
+	int64_t startingTime = Utility::GetTime();
 	double nextGameTick = (double)getTickCount(startingTime);
 	int loops;
 	int renders;
 	float interp;
 
 	float lastFrame = glfwGetTime();
+	
+
 
 	while (!wh->isWindowClosing())
 	{
@@ -51,9 +58,11 @@ void Engine::Run()
 		int64_t tempvar = getTickCount(startingTime);
 		while (tempvar > nextGameTick&& loops < MAX_FRAMESKIP)
 		{
+			//ghetto deltatime
 			float currentFrame = glfwGetTime();
 			float deltaTime = currentFrame - lastFrame;
 			lastFrame = currentFrame;
+
 			update(deltaTime);
 
 			nextGameTick += SKIP_TICKS;
@@ -65,8 +74,16 @@ void Engine::Run()
 
 		render(interp);
 
+		if (FPS_COUNTER)
+		{
+
+		}
+
 		glfwPollEvents();
-		glfwSwapBuffers(wh->getWindow());
+		if (VSYNC)
+			glfwSwapBuffers(wh->getWindow());
+		else 
+			glFlush();
 	}
 	glfwTerminate();
 	return;
@@ -74,12 +91,7 @@ void Engine::Run()
 
 int64_t Engine::getTickCount(int64_t startingTime)
 {
-	return getTime() - startingTime;
-}
-
-int64_t Engine::getTime()
-{
-	return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	return Utility::GetTime() - startingTime;
 }
 
 void Engine::update(float timestep)

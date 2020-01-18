@@ -3,7 +3,7 @@
 
 WindowSystem::WindowSystem(EntityAdmin* admin) : System(admin)
 {
-	auto windowTuple = admin->GetWindowTuple();
+	auto windowComponent = admin->GetSingle<WindowComponent>();
 
-	windowTuple->windowComponent->window = admin->window;
+	windowComponent->window = admin->window;
 }

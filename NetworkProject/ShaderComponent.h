@@ -4,26 +4,16 @@
 #include <fstream>
 #include <sstream>
 #include <glad\glad.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class ShaderComponent : public Component
 {
 public:
-	uint32_t VAO;
-	uint32_t VBO;
-	uint32_t EBO;
-
-    uint32_t Texture;
-    uint32_t Texture2;
-
-    uint32_t ProjectionMatrixLocation;
-    uint32_t ViewMatrixLocation;
-    uint32_t ModelMatrixLocation;
-
-    float mixValue = 0.2;
+    float MixValue = 0.2;
 
 	uint32_t ID;
 
-public:
     ShaderComponent(const std::string vertexPath, const std::string fragmentPath)
 	{
         int success;
@@ -98,5 +88,25 @@ public:
             glGetProgramInfoLog(ID, 512, NULL, infoLog);
             std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
         }
+
+        projectionMatrixLocation = glGetUniformLocation(ID, "projection");
+        viewMatrixLocation = glGetUniformLocation(ID, "view");
+        modelMatrixLocation = glGetUniformLocation(ID, "model");
 	}
+    void SetProjectionMatrix(const glm::mat4& matrix)
+    {
+        glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(matrix));
+    }
+    void SetViewMatrix(const glm::mat4& matrix)
+    {
+        glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(matrix));
+    }
+    void SetModelMatrix(const glm::mat4& const matrix)
+    {
+        glUniformMatrix4fv(modelMatrixLocation, 1, GL_FALSE, glm::value_ptr(matrix));
+    }
+private:
+    uint32_t projectionMatrixLocation;
+    uint32_t viewMatrixLocation;
+    uint32_t modelMatrixLocation;
 };

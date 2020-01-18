@@ -4,25 +4,20 @@
 #include <memory>
 #include "EntityAdmin.h"
 #include "WindowHandler.h"
+#include "Constants.h"
 
 class Engine
 {
 public:
-	Engine(int windowWidth, int windowHeight, std::string windowName);
+	Engine();
 	void Run();
 	void Initialize();
 
 private:
-
-	const int WINDOW_WIDTH;
-	const int WINDOW_HEIGHT;
-	const std::string WINDOW_NAME;
-
 	std::shared_ptr<WindowHandler> wh;
 	std::shared_ptr<EntityAdmin> ea;
 
 	int64_t getTickCount(int64_t startingTime);
-	int64_t getTime();
 
 	void update(float timestep);
 
