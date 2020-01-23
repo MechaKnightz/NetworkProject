@@ -3,6 +3,7 @@
 #include "EntityAdmin.h"
 #include <GLFW\glfw3.h>
 #include "TransformComponent.h"
+#include "LightShaderComponent.h"
 
 void updateCameraVectors(std::shared_ptr<CameraComponent> camera)
 {
@@ -23,8 +24,6 @@ InputSystem::InputSystem(EntityAdmin* admin) : System(admin)
 	auto windowComponent = admin->GetSingle<WindowComponent>();
 	
 	inputComponent->KeysToCheck.push_back(GLFW_KEY_ESCAPE);
-	inputComponent->KeysToCheck.push_back(GLFW_KEY_UP);
-	inputComponent->KeysToCheck.push_back(GLFW_KEY_DOWN);
 	inputComponent->KeysToCheck.push_back(GLFW_KEY_W);
 	inputComponent->KeysToCheck.push_back(GLFW_KEY_A);
 	inputComponent->KeysToCheck.push_back(GLFW_KEY_S);
@@ -44,6 +43,7 @@ void InputSystem::Update(float timestep)
 	auto windowComponent = admin->GetSingle<WindowComponent>();
 	auto shaderComponent = admin->GetSingle<ShaderComponent>();
 	auto cameraComponent = admin->GetSingle<CameraComponent>();
+	auto lightShaderComponent = admin->GetSingle<LightShaderComponent>();
 
 	for (const auto& key : inputComponent->KeysToCheck)
 	{
@@ -52,22 +52,32 @@ void InputSystem::Update(float timestep)
 		if(key == GLFW_KEY_ESCAPE && inputComponent->KeyStatus[key] == GLFW_PRESS)
 			glfwSetWindowShouldClose(windowComponent->window, true);
 
-		auto renderTuple = admin->GetRenderTuple();
+		auto renderTuple = admin->GetRenderTuples();
 
-		if (key == GLFW_KEY_UP && inputComponent->KeyStatus[key] == GLFW_PRESS)
-		{
-			renderTuple[0]->transformComponent->Position.y += timestep * 10;
-			shaderComponent->MixValue += 0.001f; // change this value accordingly (might be too slow or too fast based on system hardware)
-			if (shaderComponent->MixValue >= 1.0f)
-				shaderComponent->MixValue = 1.0f;
-		}
-		if (key == GLFW_KEY_DOWN && inputComponent->KeyStatus[key] == GLFW_PRESS)
-		{
-			renderTuple[0]->transformComponent->Position.y -= timestep * 10;
-			shaderComponent->MixValue -= 0.001f; // change this value accordingly (might be too slow or too fast based on system hardware)
-			if (shaderComponent->MixValue <= 0.0f)
-				shaderComponent->MixValue = 0.0f;
-		}
+		//if (key == GLFW_KEY_UP && inputComponent->KeyStatus[key] == GLFW_PRESS)
+		//{
+		//	lightShaderComponent->LightPos.y = lightShaderComponent->LightPos.y + 1.0f * timestep;
+		//}
+		//if (key == GLFW_KEY_DOWN && inputComponent->KeyStatus[key] == GLFW_PRESS)
+		//{
+		//	lightShaderComponent->LightPos.y = lightShaderComponent->LightPos.y - 1.0f * timestep;
+		//}
+		//if (key == GLFW_KEY_RIGHT && inputComponent->KeyStatus[key] == GLFW_PRESS)
+		//{
+		//	lightShaderComponent->LightPos.x = lightShaderComponent->LightPos.x + 1.0f * timestep;
+		//}
+		//if (key == GLFW_KEY_LEFT && inputComponent->KeyStatus[key] == GLFW_PRESS)
+		//{
+		//	lightShaderComponent->LightPos.x = lightShaderComponent->LightPos.x - 1.0f * timestep;
+		//}
+		//if (key == GLFW_KEY_PERIOD && inputComponent->KeyStatus[key] == GLFW_PRESS)
+		//{
+		//	lightShaderComponent->LightPos.z = lightShaderComponent->LightPos.z + 1.0f * timestep;
+		//}
+		//if (key == GLFW_KEY_COMMA && inputComponent->KeyStatus[key] == GLFW_PRESS)
+		//{
+		//	lightShaderComponent->LightPos.z = lightShaderComponent->LightPos.z - 1.0f * timestep;
+		//}
 		if (key == GLFW_KEY_W && inputComponent->KeyStatus[key] == GLFW_PRESS)
 		{
 			cameraComponent->Position += cameraComponent->Front * cameraComponent->MovementSpeed * timestep;

@@ -68,6 +68,9 @@
     <ClCompile Include="Utility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PointLightComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -148,11 +151,34 @@
     <ClInclude Include="Utility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LightComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="LightTuple.h">
+      <Filter>Header Files\Tuples</Filter>
+    </ClInclude>
+    <ClInclude Include="LightShaderComponent.h">
+      <Filter>Header Files\SingletonComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLightComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLightTuple.h">
+      <Filter>Header Files\Tuples</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="shaders\shader.frag" />
     <CustomBuild Include="shaders\shader.vert" />
     <CustomBuild Include="resources\container.jpg" />
     <CustomBuild Include="resources\bananas.jpg" />
+    <CustomBuild Include="shaders\lightShader.frag" />
+    <CustomBuild Include="shaders\lightShader.vert" />
+    <CustomBuild Include="resources\container2.png" />
+    <CustomBuild Include="resources\container2_specular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\container3.jpg" />
+    <Image Include="resources\container3_specular.png" />
   </ItemGroup>
 </Project>

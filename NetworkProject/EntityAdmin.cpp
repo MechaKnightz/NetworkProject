@@ -8,11 +8,15 @@
 #include "Constants.h"
 #include "FPSCounterComponent.h"
 #include "FPSCounterSystem.h"
+#include "LightComponent.h"
+#include "LightShaderComponent.h"
+#include "PointLightComponent.h"
+#include "PointLightTuple.h"
 
 using namespace std;
 
 glm::vec3 cubePositions[] = {
-  glm::vec3(0.0f,  0.0f,  0.0f),
+  glm::vec3(-3.0f,  0.0f,  0.0f),
   glm::vec3(2.0f,  5.0f, -15.0f),
   glm::vec3(-1.5f, -2.2f, -2.5f),
   glm::vec3(-3.8f, -2.0f, -12.3f),
@@ -56,6 +60,7 @@ void EntityAdmin::initSingleComponents()
 	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<InputComponent>()));
 	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<WindowComponent>(this->window)));
 	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<ShaderComponent>("shaders/shader.vert", "shaders/shader.frag")));
+	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<LightShaderComponent>("shaders/lightShader.vert", "shaders/lightShader.frag")));
 	singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<CameraComponent>()));
 	if(FPS_COUNTER) singleComponents.push_back(dynamic_pointer_cast<Component>(std::make_shared<FPSCounterComponent>()));
 }
@@ -68,11 +73,19 @@ void EntityAdmin::InitEntities()
 		ent->Components.push_back(make_shared<TransformComponent>(cubePos));
 		ent->Components.push_back(make_shared<ModelComponent>());
 	}
+	auto ent = CreateEntity();
+	ent->Components.push_back(make_shared<TransformComponent>(glm::vec3(-5.0f, 0.0f, 0.0f)));
+	ent->Components.push_back(make_shared<PointLightComponent>());
+	ent = CreateEntity();
+	ent->Components.push_back(make_shared<TransformComponent>(glm::vec3(0.0f, 2.0f, -2.0f)));
+	ent->Components.push_back(make_shared<PointLightComponent>());
+	ent = CreateEntity();
+	ent->Components.push_back(make_shared<TransformComponent>(glm::vec3(-1.0f, 1.0f, -5.0f)));
+	ent->Components.push_back(make_shared<PointLightComponent>());
 }
 
 void EntityAdmin::Update(float timestep)
 {
-	//cout << getRandomUInt32() << endl;
 	for(const auto& system : systems)
 	{
 		system->Update(timestep);
@@ -87,7 +100,7 @@ void EntityAdmin::Draw(float interp)
 	}
 }
 
-std::vector<std::shared_ptr<RenderTuple>> EntityAdmin::GetRenderTuple()
+std::vector<std::shared_ptr<RenderTuple>> EntityAdmin::GetRenderTuples()
 {
 	auto list = std::vector<std::shared_ptr<RenderTuple>>();
 	
@@ -110,6 +123,33 @@ std::vector<std::shared_ptr<RenderTuple>> EntityAdmin::GetRenderTuple()
 		}
 		if (cameraComponent == nullptr) continue;
 		list.push_back(make_shared<RenderTuple>(transformComponent, cameraComponent));
+	}
+	return list;
+}
+
+std::vector<std::shared_ptr<PointLightTuple>> EntityAdmin::GetPointLightTuples()
+{
+	auto list = std::vector<std::shared_ptr<PointLightTuple>>();
+
+	for (const auto& tuple : entities)
+	{
+		shared_ptr<TransformComponent> transformComponent;
+		for (const auto& entity : tuple.second->Components)
+		{
+			if (auto shader = dynamic_pointer_cast<TransformComponent>(entity)) {
+				transformComponent = shader;
+			}
+		}
+		if (transformComponent == nullptr) continue;
+		shared_ptr<PointLightComponent> lightComponent;
+		for (const auto& entity : tuple.second->Components)
+		{
+			if (auto camera = dynamic_pointer_cast<PointLightComponent>(entity)) {
+				lightComponent = camera;
+			}
+		}
+		if (lightComponent == nullptr) continue;
+		list.push_back(make_shared<PointLightTuple>(transformComponent, lightComponent));
 	}
 	return list;
 }

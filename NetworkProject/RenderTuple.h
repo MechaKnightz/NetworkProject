@@ -1,5 +1,5 @@
 #pragma once
-#include <boost\smart_ptr\shared_ptr.hpp>
+#include <memory>
 class TransformComponent;
 class ModelComponent;
 

@@ -5,12 +5,12 @@
 #include <vector>
 #include <random>
 #include <memory>
-#include "InputTuple.h"
-#include "WindowTuple.h"
+#include "LightTuple.h"
 #include "RenderTuple.h"
 #include "System.h"
 #include <utility>
 #include <iostream>
+#include "PointLightTuple.h"
 
 class GLFWwindow;
 
@@ -21,7 +21,8 @@ public:
 	void Update(float timestep);
 	void Draw(float interp);
 
-	std::vector<std::shared_ptr<RenderTuple>> GetRenderTuple();
+	std::vector<std::shared_ptr<RenderTuple>> GetRenderTuples();
+	std::vector<std::shared_ptr<PointLightTuple>> GetPointLightTuples();
 
 	template <class T>
 	std::shared_ptr<T> GetSingle()
