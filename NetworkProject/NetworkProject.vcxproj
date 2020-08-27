@@ -113,14 +113,22 @@
       </Outputs>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>copy %(Identity) $(OutDir)%(Identity)</Command>
+      <Command>
+      </Command>
     </CustomBuild>
     <CustomBuild>
-      <Message>Copying %(Identity)...</Message>
+      <Message>
+      </Message>
     </CustomBuild>
     <CustomBuild>
-      <Outputs>$(OutDir)%(Identity)</Outputs>
+      <Outputs>
+      </Outputs>
     </CustomBuild>
+    <PostBuildEvent>
+      <Command>xcopy /y /d  $(ProjectDir)lib\*.dll $(OutDir)
+xcopy /e /y /i /r $(ProjectDir)resources $(TargetDir)resources
+xcopy /e /y /i /r $(ProjectDir)shaders $(TargetDir)shaders</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -146,14 +154,22 @@
       </Outputs>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>copy %(Identity) $(OutDir)%(Identity)</Command>
+      <Command>
+      </Command>
     </CustomBuild>
     <CustomBuild>
-      <Message>Copying %(Identity)...</Message>
+      <Message>
+      </Message>
     </CustomBuild>
     <CustomBuild>
-      <Outputs>$(OutDir)%(Identity)</Outputs>
+      <Outputs>
+      </Outputs>
     </CustomBuild>
+    <PostBuildEvent>
+      <Command>xcopy /y /d  $(ProjectDir)lib\*.dll $(OutDir)
+xcopy /e /y /i /r $(ProjectDir)resources $(TargetDir)resources
+xcopy /e /y /i /r $(ProjectDir)shaders $(TargetDir)shaders</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -187,14 +203,22 @@
       </Outputs>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>copy %(Identity) $(OutDir)%(Identity)</Command>
+      <Command>
+      </Command>
     </CustomBuild>
     <CustomBuild>
-      <Message>Copying %(Identity)...</Message>
+      <Message>
+      </Message>
     </CustomBuild>
     <CustomBuild>
-      <Outputs>$(OutDir)%(Identity)</Outputs>
+      <Outputs>
+      </Outputs>
     </CustomBuild>
+    <PostBuildEvent>
+      <Command>xcopy /y /d  $(ProjectDir)lib\*.dll $(OutDir)
+xcopy /e /y /i /r $(ProjectDir)resources $(TargetDir)resources
+xcopy /e /y /i /r $(ProjectDir)shaders $(TargetDir)shaders</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -228,16 +252,26 @@
       </Outputs>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>copy %(Identity) $(OutDir)%(Identity)</Command>
+      <Command>
+      </Command>
     </CustomBuild>
     <CustomBuild>
-      <Message>Copying %(Identity)...</Message>
+      <Message>
+      </Message>
     </CustomBuild>
     <CustomBuild>
-      <Outputs>$(OutDir)%(Identity)</Outputs>
+      <Outputs>
+      </Outputs>
     </CustomBuild>
+    <PostBuildEvent>
+      <Command>xcopy /y /d  $(ProjectDir)lib\*.dll $(OutDir)
+xcopy /e /y /i /r $(ProjectDir)resources $(TargetDir)resources
+xcopy /e /y /i /r $(ProjectDir)shaders $(TargetDir)shaders</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CameraComponent.h" />
+    <ClCompile Include="CameraTuple.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -245,17 +279,24 @@
     <ClCompile Include="FPSCounterSystem.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="InputSystem.cpp" />
+    <ClCompile Include="LightEntity.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PointLightComponent.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="ModelComponent.cpp" />
+    <ClCompile Include="PerspectiveCameraComponent.h" />
+    <ClCompile Include="PointLightTuple.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="RenderTuple.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="System.cpp" />
     <ClCompile Include="Utility.cpp" />
-    <ClCompile Include="WindowHandler.cpp" />
     <ClCompile Include="WindowSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CameraComponent.h" />
+    <ClInclude Include="CameraTuple.h" />
+    <ClInclude Include="Transform2DComponent.h" />
+    <ClInclude Include="MainCameraComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Engine.h" />
@@ -266,26 +307,26 @@
     <ClInclude Include="include\stb_image.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputSystem.h" />
-    <ClInclude Include="InputTuple.h" />
     <ClInclude Include="LightComponent.h" />
+    <ClInclude Include="LightEntity.h" />
     <ClInclude Include="LightShaderComponent.h" />
-    <ClInclude Include="LightTuple.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="ModelComponent.h" />
     <ClInclude Include="PointLightComponent.h" />
     <ClInclude Include="PointLightTuple.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderComponent.h" />
     <ClInclude Include="RenderTuple.h" />
+    <ClInclude Include="SkyboxComponent.h" />
+    <ClInclude Include="SkyboxShaderComponent.h" />
     <ClInclude Include="System.h" />
-    <ClInclude Include="TestTuple.h" />
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="Utility.h" />
     <ClInclude Include="WindowComponent.h" />
-    <ClInclude Include="WindowHandler.h" />
     <ClInclude Include="WindowSystem.h" />
-    <ClInclude Include="WindowTuple.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="shaders\shader.frag">
@@ -322,6 +363,74 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="resources\container3_specular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="resources\nanosuit\nanosuit.obj">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DeploymentContent>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="resources\nanosuit\arm_dif.png" />
+    <CustomBuild Include="resources\nanosuit\arm_showroom_ddn.png" />
+    <CustomBuild Include="resources\nanosuit\arm_showroom_spec.png" />
+    <CustomBuild Include="resources\nanosuit\body_dif.png" />
+    <CustomBuild Include="resources\nanosuit\body_showroom_ddn.png" />
+    <CustomBuild Include="resources\nanosuit\body_showroom_spec.png" />
+    <CustomBuild Include="resources\nanosuit\glass_ddn.png" />
+    <CustomBuild Include="resources\nanosuit\glass_dif.png" />
+    <CustomBuild Include="resources\nanosuit\hand_dif.png" />
+    <CustomBuild Include="resources\nanosuit\hand_showroom_ddn.png" />
+    <CustomBuild Include="resources\nanosuit\hand_showroom_spec.png" />
+    <CustomBuild Include="resources\nanosuit\helmet_diff.png" />
+    <CustomBuild Include="resources\nanosuit\helmet_showroom_ddn.png" />
+    <CustomBuild Include="resources\nanosuit\helmet_showroom_spec.png" />
+    <CustomBuild Include="resources\nanosuit\leg_dif.png" />
+    <CustomBuild Include="resources\nanosuit\leg_showroom_ddn.png" />
+    <CustomBuild Include="resources\nanosuit\leg_showroom_spec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="resources\nanosuit\LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="resources\nanosuit\nanosuit.blend">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <CustomBuild Include="resources\nanosuit\nanosuit.mtl">
+      <FileType>Document</FileType>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="shaders\cubeMapShader.frag">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <CustomBuild Include="shaders\cubeMapShader.vert">
+      <FileType>Document</FileType>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="resources\skybox\back.jpg" />
+    <CustomBuild Include="resources\skybox\bottom.jpg" />
+    <CustomBuild Include="resources\skybox\front.jpg" />
+    <CustomBuild Include="resources\skybox\left.jpg" />
+    <CustomBuild Include="resources\skybox\right.jpg" />
+    <CustomBuild Include="resources\skybox\top.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\mp_crimimpact\criminal-impact_bk.png" />
+    <CustomBuild Include="resources\mp_crimimpact\criminal-impact_bk.tga" />
+    <CustomBuild Include="resources\mp_crimimpact\criminal-impact_dn.tga" />
+    <CustomBuild Include="resources\mp_crimimpact\criminal-impact_ft.tga" />
+    <CustomBuild Include="resources\mp_crimimpact\criminal-impact_lf.tga" />
+    <CustomBuild Include="resources\mp_crimimpact\criminal-impact_rt.tga" />
+    <CustomBuild Include="resources\mp_crimimpact\criminal-impact_up.tga" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,9 +5,12 @@
 #include <fstream>
 #include <sstream>
 #include <glad\glad.h>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/glm.hpp>
 
 class Shader : public Component
 {
+	uint32_t projectionMatrixLocation;
 public:
 	int32_t ID;
 
@@ -85,6 +88,12 @@ public:
 			glGetProgramInfoLog(ID, 512, NULL, infoLog);
 			std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
 		}
+		projectionMatrixLocation = glGetUniformLocation(ID, "projection");
+	}
+
+	void SetProjectionMatrix(const glm::mat4& matrix)
+	{
+		glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 	
 	virtual ~Shader() {}

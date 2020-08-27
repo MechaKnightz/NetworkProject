@@ -24,6 +24,12 @@
     <Filter Include="Header Files\SingletonComponents">
       <UniqueIdentifier>{52ad2c89-d9f3-4044-bed7-7379cc9cdf1c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Entities">
+      <UniqueIdentifier>{c3971de9-ee6e-4275-b12e-674b3076d6a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tuples">
+      <UniqueIdentifier>{25ffb069-0cc3-42e6-b184-152efb23b6e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,9 +39,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
@@ -68,15 +71,36 @@
     <ClCompile Include="Utility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PointLightComponent.cpp">
+    <ClCompile Include="Mesh.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LightEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderTuple.cpp">
+      <Filter>Source Files\Tuples</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLightTuple.cpp">
+      <Filter>Source Files\Tuples</Filter>
+    </ClCompile>
+    <ClCompile Include="PerspectiveCameraComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraTuple.cpp">
+      <Filter>Source Files\Tuples</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
@@ -112,20 +136,11 @@
     <ClInclude Include="ShaderComponent.h">
       <Filter>Header Files\SingletonComponents</Filter>
     </ClInclude>
-    <ClInclude Include="WindowTuple.h">
-      <Filter>Header Files\Tuples</Filter>
-    </ClInclude>
-    <ClInclude Include="InputTuple.h">
-      <Filter>Header Files\Tuples</Filter>
-    </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\stb_image.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraComponent.h">
-      <Filter>Header Files\SingletonComponents</Filter>
     </ClInclude>
     <ClInclude Include="RenderTuple.h">
       <Filter>Header Files\Tuples</Filter>
@@ -135,9 +150,6 @@
     </ClInclude>
     <ClInclude Include="TransformComponent.h">
       <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="TestTuple.h">
-      <Filter>Header Files\Tuples</Filter>
     </ClInclude>
     <ClInclude Include="Constants.h">
       <Filter>Header Files</Filter>
@@ -154,9 +166,6 @@
     <ClInclude Include="LightComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="LightTuple.h">
-      <Filter>Header Files\Tuples</Filter>
-    </ClInclude>
     <ClInclude Include="LightShaderComponent.h">
       <Filter>Header Files\SingletonComponents</Filter>
     </ClInclude>
@@ -164,6 +173,30 @@
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="PointLightTuple.h">
+      <Filter>Header Files\Tuples</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyboxComponent.h">
+      <Filter>Header Files\SingletonComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyboxShaderComponent.h">
+      <Filter>Header Files\SingletonComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LightEntity.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="MainCameraComponent.h">
+      <Filter>Header Files\SingletonComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform2DComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraTuple.h">
       <Filter>Header Files\Tuples</Filter>
     </ClInclude>
   </ItemGroup>
@@ -176,9 +209,45 @@
     <CustomBuild Include="shaders\lightShader.vert" />
     <CustomBuild Include="resources\container2.png" />
     <CustomBuild Include="resources\container2_specular.png" />
+    <CustomBuild Include="resources\container3.jpg" />
+    <CustomBuild Include="resources\container3_specular.png" />
+    <CustomBuild Include="resources\nanosuit\nanosuit.obj" />
+    <CustomBuild Include="resources\nanosuit\arm_dif.png" />
+    <CustomBuild Include="resources\nanosuit\arm_showroom_ddn.png" />
+    <CustomBuild Include="resources\nanosuit\arm_showroom_spec.png" />
+    <CustomBuild Include="resources\nanosuit\body_dif.png" />
+    <CustomBuild Include="resources\nanosuit\body_showroom_ddn.png" />
+    <CustomBuild Include="resources\nanosuit\body_showroom_spec.png" />
+    <CustomBuild Include="resources\nanosuit\glass_ddn.png" />
+    <CustomBuild Include="resources\nanosuit\glass_dif.png" />
+    <CustomBuild Include="resources\nanosuit\hand_dif.png" />
+    <CustomBuild Include="resources\nanosuit\hand_showroom_ddn.png" />
+    <CustomBuild Include="resources\nanosuit\hand_showroom_spec.png" />
+    <CustomBuild Include="resources\nanosuit\helmet_diff.png" />
+    <CustomBuild Include="resources\nanosuit\helmet_showroom_ddn.png" />
+    <CustomBuild Include="resources\nanosuit\helmet_showroom_spec.png" />
+    <CustomBuild Include="resources\nanosuit\leg_dif.png" />
+    <CustomBuild Include="resources\nanosuit\leg_showroom_ddn.png" />
+    <CustomBuild Include="resources\nanosuit\leg_showroom_spec.png" />
+    <CustomBuild Include="resources\nanosuit\LICENSE.txt" />
+    <CustomBuild Include="resources\nanosuit\nanosuit.blend" />
+    <CustomBuild Include="resources\nanosuit\nanosuit.mtl" />
+    <CustomBuild Include="shaders\cubeMapShader.frag" />
+    <CustomBuild Include="shaders\cubeMapShader.vert" />
+    <CustomBuild Include="resources\skybox\back.jpg" />
+    <CustomBuild Include="resources\skybox\bottom.jpg" />
+    <CustomBuild Include="resources\skybox\front.jpg" />
+    <CustomBuild Include="resources\skybox\left.jpg" />
+    <CustomBuild Include="resources\skybox\right.jpg" />
+    <CustomBuild Include="resources\skybox\top.jpg" />
+    <CustomBuild Include="resources\mp_crimimpact\criminal-impact_bk.tga" />
+    <CustomBuild Include="resources\mp_crimimpact\criminal-impact_dn.tga" />
+    <CustomBuild Include="resources\mp_crimimpact\criminal-impact_ft.tga" />
+    <CustomBuild Include="resources\mp_crimimpact\criminal-impact_lf.tga" />
+    <CustomBuild Include="resources\mp_crimimpact\criminal-impact_rt.tga" />
+    <CustomBuild Include="resources\mp_crimimpact\criminal-impact_up.tga" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\container3.jpg" />
-    <Image Include="resources\container3_specular.png" />
+    <Image Include="resources\mp_crimimpact\criminal-impact_bk.png" />
   </ItemGroup>
 </Project>

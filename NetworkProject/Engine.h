@@ -3,21 +3,20 @@
 #include <string>
 #include <memory>
 #include "EntityAdmin.h"
-#include "WindowHandler.h"
 #include "Constants.h"
+class GLFWwindow;
 
 class Engine
 {
 public:
 	Engine();
 	void Run();
-	void Initialize();
-
 private:
-	std::shared_ptr<WindowHandler> wh;
 	std::shared_ptr<EntityAdmin> ea;
 
 	int64_t getTickCount(int64_t startingTime);
+
+	GLFWwindow* window;
 
 	void update(float timestep);
 

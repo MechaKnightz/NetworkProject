@@ -1,13 +1,15 @@
 #pragma once
+#include "Entity.h"
+#include <map>
 #include <memory>
-class TransformComponent;
+
 class ModelComponent;
+class TransformComponent;
 
 struct RenderTuple {
-	RenderTuple(std::shared_ptr<TransformComponent> transformComponent, std::shared_ptr<ModelComponent> modelComponent) : transformComponent(transformComponent), modelComponent(modelComponent)
-	{
+	std::shared_ptr<TransformComponent> Transform;
+	std::shared_ptr<ModelComponent> Model;
 
-	}
-	std::shared_ptr<TransformComponent> transformComponent;
-	std::shared_ptr<ModelComponent> modelComponent;
+	static std::vector<std::shared_ptr<RenderTuple>> GetRenderTuples(std::map<uint32_t, std::shared_ptr<Entity>>& entities);
+
 };

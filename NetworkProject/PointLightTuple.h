@@ -1,14 +1,13 @@
 #pragma once
 #include <memory>
+#include "Entity.h"
+#include <map>
 class TransformComponent;
 class PointLightComponent;
 
 struct PointLightTuple {
-public:
-	PointLightTuple(std::shared_ptr<TransformComponent> transformComponent, std::shared_ptr<PointLightComponent> pointLightComponent) : transformComponent(transformComponent), pointLightComponent(pointLightComponent)
-	{
+	std::shared_ptr<TransformComponent> Transform;
+	std::shared_ptr<PointLightComponent> PointLight;
 
-	}
-	std::shared_ptr<TransformComponent> transformComponent;
-	std::shared_ptr<PointLightComponent> pointLightComponent;
+	static std::vector<std::shared_ptr<PointLightTuple>> GetPointLightTuples(std::map<uint32_t, std::shared_ptr<Entity>>& entities);
 };

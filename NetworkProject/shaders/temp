@@ -1,0 +1,3 @@
+copy %(Identity) $(OutDir)%(Identity)
+Copying %(Identity)...
+$(OutDir)%(Identity)

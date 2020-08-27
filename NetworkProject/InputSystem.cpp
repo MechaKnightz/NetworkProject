@@ -4,18 +4,42 @@
 #include <GLFW\glfw3.h>
 #include "TransformComponent.h"
 #include "LightShaderComponent.h"
+#include "InputComponent.h"
+#include "WindowComponent.h"
+#include "ShaderComponent.h"
+#include "CameraComponent.h"
+#include <glm/glm.hpp>
+#include "PerspectiveCameraComponent.h"
+#include "MainCameraComponent.h"
+#include "glm/gtc/quaternion.hpp"
 
-void updateCameraVectors(std::shared_ptr<CameraComponent> camera)
+const float YAW = -90.0f;
+const float PITCH = 0.0f;
+const float SPEED = 2.5f;
+const float SENSITIVITY = 0.1f;
+const float ZOOM = 45.0f;
+
+void updateCameraVectors(std::shared_ptr<CameraTuple> camera)
 {
 	// Calculate the new Front vector
-	glm::vec3 front;
-	front.x = cos(glm::radians(camera->Yaw)) * cos(glm::radians(camera->Pitch));
-	front.y = sin(glm::radians(camera->Pitch));
-	front.z = sin(glm::radians(camera->Yaw)) * cos(glm::radians(camera->Pitch));
-	camera->Front = glm::normalize(front);
-	// Also re-calculate the Right and Up vector
-	camera->Right = glm::normalize(glm::cross(camera->Front, camera->WorldUp));  // Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
-	camera->Up = glm::normalize(glm::cross(camera->Right, camera->Front));
+	glm::vec3 test(0.f);
+	auto position = camera->Transform->Position;
+	glm::vec3 front(0.f);
+	auto mat = glm::rotate(front, camera->Transform->Rotation, glm::vec3(0, 0, -1));
+	front = glm::normalize();
+	auto right = glm::normalize(glm::cross(front, glm::vec3()));
+	auto up = glm::normalize(glm::cross(right, front));
+	auto lookAt =  glm::lookAt(position, position + front, up);
+	
+
+	//glm::vec3 front;
+	//front.x = cos(glm::radians(camera->Yaw)) * cos(glm::radians(camera->Transform->Rotation ));//pu
+	//front.y = sin(glm::radians(camera->Pitch));
+	//front.z = sin(glm::radians(camera->Yaw)) * cos(glm::radians(camera->Pitch));
+	//camera->Front = glm::normalize(front);
+	//// Also re-calculate the Right and Up vector
+	//camera->Right = glm::normalize(glm::cross(camera->Front, camera->WorldUp));  // Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
+	//camera->Up = glm::normalize(glm::cross(camera->Right, camera->Front));
 }
 
 InputSystem::InputSystem(EntityAdmin* admin) : System(admin)
@@ -42,7 +66,7 @@ void InputSystem::Update(float timestep)
 	auto inputComponent = admin->GetSingle<InputComponent>();
 	auto windowComponent = admin->GetSingle<WindowComponent>();
 	auto shaderComponent = admin->GetSingle<ShaderComponent>();
-	auto cameraComponent = admin->GetSingle<CameraComponent>();
+	auto cameraComponent = admin->GetMainCamera();
 	auto lightShaderComponent = admin->GetSingle<LightShaderComponent>();
 
 	for (const auto& key : inputComponent->KeysToCheck)
@@ -78,30 +102,30 @@ void InputSystem::Update(float timestep)
 		//{
 		//	lightShaderComponent->LightPos.z = lightShaderComponent->LightPos.z - 1.0f * timestep;
 		//}
-		if (key == GLFW_KEY_W && inputComponent->KeyStatus[key] == GLFW_PRESS)
-		{
-			cameraComponent->Position += cameraComponent->Front * cameraComponent->MovementSpeed * timestep;
-		}
-		if (key == GLFW_KEY_A && inputComponent->KeyStatus[key] == GLFW_PRESS)
-		{
-			cameraComponent->Position -= cameraComponent->Right * cameraComponent->MovementSpeed * timestep;
-		}
-		if (key == GLFW_KEY_S && inputComponent->KeyStatus[key] == GLFW_PRESS)
-		{
-			cameraComponent->Position -= cameraComponent->Front * cameraComponent->MovementSpeed * timestep;
-		}
-		if (key == GLFW_KEY_D && inputComponent->KeyStatus[key] == GLFW_PRESS)
-		{
-			cameraComponent->Position += cameraComponent->Right * cameraComponent->MovementSpeed * timestep;
-		}
-		if (key == GLFW_KEY_SPACE && inputComponent->KeyStatus[key] == GLFW_PRESS)
-		{
-			cameraComponent->Position += cameraComponent->Up * cameraComponent->MovementSpeed * timestep;
-		}
-		if (key == GLFW_KEY_LEFT_CONTROL && inputComponent->KeyStatus[key] == GLFW_PRESS)
-		{
-			cameraComponent->Position -= cameraComponent->Up * cameraComponent->MovementSpeed * timestep;
-		}
+		//if (key == GLFW_KEY_W && inputComponent->KeyStatus[key] == GLFW_PRESS)
+		//{
+		//	cameraComponent->Transform->Position += cameraComponent->Front * SPEED * timestep;
+		//}
+		//if (key == GLFW_KEY_A && inputComponent->KeyStatus[key] == GLFW_PRESS)
+		//{
+		//	cameraComponent->Transform->Position -= cameraComponent->Right * SPEED * timestep;
+		//}
+		//if (key == GLFW_KEY_S && inputComponent->KeyStatus[key] == GLFW_PRESS)
+		//{
+		//	cameraComponent->Transform->Position -= cameraComponent->Front * SPEED * timestep;
+		//}
+		//if (key == GLFW_KEY_D && inputComponent->KeyStatus[key] == GLFW_PRESS)
+		//{
+		//	cameraComponent->Transform->Position += cameraComponent->Right * SPEED * timestep;
+		//}
+		//if (key == GLFW_KEY_SPACE && inputComponent->KeyStatus[key] == GLFW_PRESS)
+		//{
+		//	cameraComponent->Transform->Position += cameraComponent->Up * SPEED * timestep;
+		//}
+		//if (key == GLFW_KEY_LEFT_CONTROL && inputComponent->KeyStatus[key] == GLFW_PRESS)
+		//{
+		//	cameraComponent->Transform->Position -= cameraComponent->Up * SPEED * timestep;
+		//}
 	}
 
 	double xpos, ypos;
@@ -117,17 +141,20 @@ void InputSystem::Update(float timestep)
 	float xoffset = xpos - inputComponent->OldMouseXPos;
 	float yoffset = inputComponent->OldMouseYPos - ypos;
 
-	xoffset *= cameraComponent->MouseSensitivity;
-	yoffset *= cameraComponent->MouseSensitivity;
+	xoffset *= SENSITIVITY;
+	yoffset *= SENSITIVITY;
 
-	cameraComponent->Yaw += xoffset;
-	cameraComponent->Pitch += yoffset;
+	cameraComponent->Transform->Rotation = glm::rotate(cameraComponent->Transform->Rotation, xoffset, glm::vec3(0.f, 1.f, 0.f));
+	cameraComponent->Transform->Rotation = glm::rotate(cameraComponent->Transform->Rotation, yoffset, glm::vec3(1.f, 0.f, 1.f));
+	
+	//cameraComponent->Yaw += xoffset;
+	//cameraComponent->Pitch += yoffset;
 
 	// Make sure that when pitch is out of bounds, screen doesn't get flipped
-	if (cameraComponent->Pitch > 89.0f)
-		cameraComponent->Pitch = 89.0f;
-	if (cameraComponent->Pitch < -89.0f)
-		cameraComponent->Pitch = -89.0f;
+	//if (cameraComponent->Pitch > 89.0f)
+	//	cameraComponent->Pitch = 89.0f;
+	//if (cameraComponent->Pitch < -89.0f)
+	//	cameraComponent->Pitch = -89.0f;
 
 	// Update Front, Right and Up Vectors using the updated Euler angles
 	updateCameraVectors(cameraComponent);
